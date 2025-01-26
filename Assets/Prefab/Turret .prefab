@@ -64,9 +64,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7731730344938027351, guid: 7b054fdbf9a29ba4db7d18ca8f1fe84e, type: 3}
-  - {fileID: -583405790510602304, guid: 7b054fdbf9a29ba4db7d18ca8f1fe84e, type: 3}
-  - {fileID: 3044043465599994531, guid: 7b054fdbf9a29ba4db7d18ca8f1fe84e, type: 3}
+  - {fileID: 2100000, guid: 01eab2e40dc3d8442b566f74e79d432a, type: 2}
+  - {fileID: 2100000, guid: f2c9d72c01737474e8ed21ef883e283d, type: 2}
+  - {fileID: 2100000, guid: 42e38b162c9afd5469515f7712e015e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,8 +152,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -583405790510602304, guid: 7b054fdbf9a29ba4db7d18ca8f1fe84e, type: 3}
-  - {fileID: 3044043465599994531, guid: 7b054fdbf9a29ba4db7d18ca8f1fe84e, type: 3}
+  - {fileID: 2100000, guid: f2c9d72c01737474e8ed21ef883e283d, type: 2}
+  - {fileID: 2100000, guid: 42e38b162c9afd5469515f7712e015e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -265,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 7050081893001014092}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 35}
+  m_LocalPosition: {x: 10, y: 0.5, z: 35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mRange: 15
-  mRotaSpeed: 5
+  mRotaSpeed: 10
   mFireRate: 1
   mFireCountDown: 1
   mEnemyTag: Enemy

@@ -4,6 +4,9 @@ public class Bullet : MonoBehaviour
 {
     public float mSpeed = 70.0f;
     public GameObject mImpactEffect;
+    public float mExplotionRadius = 0.0f;
+    public string mEnemyTag = "Enemy";
+
     private Transform mBulletTarget;
 
     public void Seek(Transform bulletTarget)
@@ -28,16 +31,53 @@ public class Bullet : MonoBehaviour
         }
 
         transform.Translate(direction.normalized * distenceThisFrame, Space.World);
-
+        transform.LookAt(mBulletTarget);
 
     }
 
     private void HitTarget()
     {
-        Debug.Log("We hit");
+        //Debug.Log("We hit");
         GameObject EffectIns = (GameObject)Instantiate(mImpactEffect, transform.position, transform.rotation);
-        Destroy(EffectIns, 1.0f);
-        Destroy(mBulletTarget.gameObject);
+        Destroy(EffectIns, 5.0f);
+
+        if (mExplotionRadius > 0.0f)
+        {
+            Explode();
+        }
+        else
+        {
+            Damage(mBulletTarget);
+        }
+
         Destroy(gameObject);
+    }
+
+    private void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position,mExplotionRadius);
+        foreach(Collider collider in colliders)
+        {
+            //Debug.Log(collider.tag);
+            if (collider.tag == mEnemyTag)
+            {
+                //Debug.Log("hit enemy");
+                Damage(collider.transform);
+            }
+        }
+    }
+
+    private void Damage(Transform Enmey)
+    {
+        Destroy(Enmey.gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(mExplotionRadius > 0.0f)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, mExplotionRadius);
+        }
     }
 }
