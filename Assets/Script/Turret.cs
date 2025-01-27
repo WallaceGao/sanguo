@@ -7,7 +7,8 @@ public class Turret : MonoBehaviour
     public float mRange = 15.0f;
     public float mRotaSpeed = 5.0f;
     public float mFireRate = 1.0f;
-    public float mFireCountDown = 1.0f;
+    public int mAmmo = 1;
+    public float mReload = 1.0f;
 
     [Header("UnitySetUp")]
     public string mEnemyTag = "Enemy";
@@ -16,10 +17,16 @@ public class Turret : MonoBehaviour
     public Transform mFirePosition;
 
     private Transform mTarget;
+    private float mCurrentReload;
+    private int mCurrentAmmo;
+    private float mFireCountDown;
 
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0.0f, 0.5f);
+        mCurrentReload = mReload;
+        mCurrentAmmo = mAmmo;
+        mFireCountDown = mFireRate;
     }
 
     private void UpdateTarget()
@@ -50,24 +57,35 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
-        if(mTarget == null)
+        //Reload and Weapon CoolDown
+        if (mCurrentAmmo <= 0)
+        {
+            mCurrentReload -= Time.deltaTime;
+        }
+        if (mCurrentReload <= 0.0f)
+        {
+            Debug.Log("Ammo:" + mCurrentAmmo.ToString());
+            mCurrentReload = mReload;
+            mCurrentAmmo = mAmmo;
+        }
+        mFireCountDown -= Time.deltaTime;
+        //Check Target
+        if (mTarget == null)
         {
             return;
         }
-
         //Target Lock on
         Vector3 dirction = mTarget.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dirction);
         Vector3 rotation = Quaternion.Lerp(mRotaPart.rotation ,lookRotation,Time.deltaTime * mRotaSpeed).eulerAngles;
         mRotaPart.rotation = Quaternion.Euler(0.0f,rotation.y,0.0f);
 
-        if(mFireCountDown <= 0.0f)
+        if(mFireCountDown <= 0.0f && mCurrentAmmo > 0)
         {
-            Shoot();
-            mFireCountDown = 1.0f / mFireRate;
+           mCurrentAmmo--;
+           Shoot();
+           mFireCountDown = mFireRate;
         }
-
-        mFireCountDown -= Time.deltaTime;
     }
 
     private void Shoot()

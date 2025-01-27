@@ -99,5 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872116ef19482c646a5cc6f7eb66c458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mDamage: 3
   mSpeed: 70
   mImpactEffect: {fileID: 4929825598275941021, guid: 1ea64441241901644a332896eadc2ca8, type: 3}
+  mExplotionRadius: 0
+  mEnemyTag: Enemy

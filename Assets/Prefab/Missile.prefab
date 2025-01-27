@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872116ef19482c646a5cc6f7eb66c458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mDamage: 5
   mSpeed: 30
   mImpactEffect: {fileID: 3622171172384847927, guid: cb6f445870e3ad8469f9f9eb996c5e1a, type: 3}
   mExplotionRadius: 8

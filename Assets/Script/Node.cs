@@ -5,6 +5,8 @@ public class Node : MonoBehaviour
 {
     public Color mHoverColor;
     public Color mStartColor;
+    public Color mCantBuildColor;
+    public Vector3 mTurretOffSet;
 
     private Renderer mRenderer;
     private GameObject mCurrentTurret;
@@ -21,28 +23,34 @@ public class Node : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject()) //check is the object still select
             return;
-        if (mBuildManager.GetTurretToBuild() == null)
+        if (!mBuildManager.CanBuild)
             return;
 
-        mRenderer.material.color = mHoverColor;
+        if(!mBuildManager.HaveMoney)
+        {
+            mRenderer.material.color = mCantBuildColor;
+        }
+        else
+        {
+            mRenderer.material.color = mHoverColor;
+        }
     }
 
     private void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject()) //check is the object still select
             return;
-        if (mBuildManager.GetTurretToBuild() == null)
+        if (!mBuildManager.CanBuild)
             return;
 
-        if(mCurrentTurret != null)
+        if (mCurrentTurret != null)
         {
             Debug.Log("Turret already build");
             return;
         }
 
         //build turret
-        GameObject TurretToBuild = BuildManager.mInstence.GetTurretToBuild();
-        mCurrentTurret = (GameObject)Instantiate(TurretToBuild, transform.position, transform.rotation);
+        mBuildManager.BuildTurretOn(this);
     }
 
     private void OnMouseExit()
@@ -50,4 +58,13 @@ public class Node : MonoBehaviour
         mRenderer.material.color = mStartColor;
     }
 
+    public Vector3 GetTurretPosition()
+    {
+        return transform.position + mTurretOffSet;
+    }
+
+    public void SetTurret(GameObject turret)
+    {
+        mCurrentTurret = turret;
+    }
 }

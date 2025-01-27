@@ -2,23 +2,29 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    BuildManager mBuildManager;
+    public TurretBluePrint mStandTurret;
+    public TurretBluePrint mMissileTurret;
+
+    private BuildManager mBuildManager;
+    
 
     private void Start()
     {
-        mBuildManager = BuildManager.mInstence; 
+        mBuildManager = BuildManager.mInstence;
+        mStandTurret.SetUI();
+        mMissileTurret.SetUI();
     }
 
-    public void PurchaseStanderTurret()
+    public void SelectStanderTurret()
     {
         Debug.Log("Stander Turret Puchase");
-        mBuildManager.SetTurretToBuild(mBuildManager.mStandProjectPrefab);
+        mBuildManager.SelectTurretToBuild(mStandTurret);
     }
 
 
-    public void PurchaseMissleTurret()
+    public void SelectMissleTurret()
     {
         Debug.Log("Stander Turret Puchase");
-        mBuildManager.SetTurretToBuild(mBuildManager.mMissileTurretPrefab);
+        mBuildManager.SelectTurretToBuild(mMissileTurret);
     }
 }

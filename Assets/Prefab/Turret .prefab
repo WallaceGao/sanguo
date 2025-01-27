@@ -285,10 +285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5ab76abe4566448b39f22af9efba5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mRange: 15
-  mRotaSpeed: 10
-  mFireRate: 1
-  mFireCountDown: 1
+  mRange: 20
+  mRotaSpeed: 15
+  mFireRate: 0.3
+  mAmmo: 6
+  mReload: 10
   mEnemyTag: Enemy
   mRotaPart: {fileID: 485950682102178208}
   mBullet: {fileID: 6809390141454962382, guid: 859ff8dd8b4f233449d3f134b33d8c35, type: 3}

@@ -103,6 +103,9 @@ MonoBehaviour:
   mHealth: 5
   mSpeed: 10
   mCloseDistance: 0.2
+  mCloseEndPosition: 2
+  mAddMoney: 20
+  mDeathEffect: {fileID: 2226904631113134640, guid: acc25a0771c36ac4f8e8a1e618ebf0ca, type: 3}
 --- !u!65 &800190456244822280
 BoxCollider:
   m_ObjectHideFlags: 0
