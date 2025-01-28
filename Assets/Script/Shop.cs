@@ -4,6 +4,7 @@ public class Shop : MonoBehaviour
 {
     public TurretBluePrint mStandTurret;
     public TurretBluePrint mMissileTurret;
+    public TurretBluePrint mLaserTurret;
 
     private BuildManager mBuildManager;
     
@@ -13,6 +14,7 @@ public class Shop : MonoBehaviour
         mBuildManager = BuildManager.mInstence;
         mStandTurret.SetUI();
         mMissileTurret.SetUI();
+        mLaserTurret.SetUI();
     }
 
     public void SelectStanderTurret()
@@ -27,4 +29,11 @@ public class Shop : MonoBehaviour
         Debug.Log("Stander Turret Puchase");
         mBuildManager.SelectTurretToBuild(mMissileTurret);
     }
+
+    public void SelectLaserTurret()
+    {
+        Debug.Log("Stander Turret Puchase");
+        mBuildManager.SelectTurretToBuild(mLaserTurret);
+    }
+
 }

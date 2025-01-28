@@ -11,7 +11,7 @@ public class WaveSpawner : MonoBehaviour
     public static Transform mEndPosition;
     public float mTimeBetweenWave = 5.0f;
     public float mTimeBetweenEnemySpwan = 0.5f;
-    public int mTatalWave = 1;
+    public static int mTatalWave = 1;
     public Text WaveCountDown;
 
     private float mCountDown = 2.0f;
@@ -21,6 +21,11 @@ public class WaveSpawner : MonoBehaviour
     {
         mStartPosition = mSetStartPosition;
         mEndPosition = mSetEndPosition;
+    }
+
+    public void Start()
+    {
+        mTatalWave = 1;
     }
 
     private void Update()
@@ -34,7 +39,7 @@ public class WaveSpawner : MonoBehaviour
         mCountDown -= Time.deltaTime;
         mCountDown = Mathf.Clamp(mCountDown, 0.0f, Mathf.Infinity);
 
-        WaveCountDown.text = string.Format("{0:00}", mCountDown);
+        WaveCountDown.text = string.Format(mTatalWave.ToString());
     }
 
     IEnumerator SpawnWave()

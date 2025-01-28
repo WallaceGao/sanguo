@@ -1,14 +1,23 @@
 using UnityEngine;
-using System.Collections;
 
 public class Turret : MonoBehaviour
 {
-    [Header("Attributes")]
+    [Header("Attributes General")]
     public float mRange = 15.0f;
     public float mRotaSpeed = 5.0f;
+
+    [Header("Attributes Bullets")]
     public float mFireRate = 1.0f;
     public int mAmmo = 1;
     public float mReload = 1.0f;
+
+    [Header("Attributes Laser")]
+    public float mLaserDamage = 0.5f;
+    public float mSlowPercent = 0.0f;
+    public bool mUseLaser = false;
+    public LineRenderer mLineRenderer;
+    public ParticleSystem mImpactEffect;
+    public Light mImpackLight;
 
     [Header("UnitySetUp")]
     public string mEnemyTag = "Enemy";
@@ -20,6 +29,7 @@ public class Turret : MonoBehaviour
     private float mCurrentReload;
     private int mCurrentAmmo;
     private float mFireCountDown;
+    private Enemy mTargetEnemy;
 
     private void Start()
     {
@@ -48,6 +58,7 @@ public class Turret : MonoBehaviour
         if(NearestEnemy != null && shortestDistence <= mRange )
         {
             mTarget = NearestEnemy.transform;
+            mTargetEnemy = mTarget.GetComponent<Enemy>();
         }
         else
         {
@@ -57,34 +68,50 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
-        //Reload and Weapon CoolDown
-        if (mCurrentAmmo <= 0)
+        if(!mUseLaser)
         {
-            mCurrentReload -= Time.deltaTime;
+            //Reload and Weapon CoolDown
+            if (mCurrentAmmo <= 0)
+            {
+               mCurrentReload -= Time.deltaTime;
+            }
+            if (mCurrentReload <= 0.0f)
+            {
+                Debug.Log("Ammo:" + mCurrentAmmo.ToString());
+                mCurrentReload = mReload;
+                mCurrentAmmo = mAmmo;
+            }
+            mFireCountDown -= Time.deltaTime;
         }
-        if (mCurrentReload <= 0.0f)
-        {
-            Debug.Log("Ammo:" + mCurrentAmmo.ToString());
-            mCurrentReload = mReload;
-            mCurrentAmmo = mAmmo;
-        }
-        mFireCountDown -= Time.deltaTime;
+        
         //Check Target
         if (mTarget == null)
         {
+            if(mUseLaser)
+            {
+                if(mLineRenderer.enabled)
+                {
+                    mLineRenderer.enabled = false;
+                    mImpackLight.enabled = false;
+                    mImpactEffect.Stop();
+                }
+            }
             return;
         }
-        //Target Lock on
-        Vector3 dirction = mTarget.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dirction);
-        Vector3 rotation = Quaternion.Lerp(mRotaPart.rotation ,lookRotation,Time.deltaTime * mRotaSpeed).eulerAngles;
-        mRotaPart.rotation = Quaternion.Euler(0.0f,rotation.y,0.0f);
 
-        if(mFireCountDown <= 0.0f && mCurrentAmmo > 0)
+        LockOnTarget();
+        if(mUseLaser)
         {
-           mCurrentAmmo--;
-           Shoot();
-           mFireCountDown = mFireRate;
+            Laser();
+        }
+        else
+        {
+            if(mFireCountDown <= 0.0f && mCurrentAmmo > 0)
+            {
+                mCurrentAmmo--;
+                Shoot();
+                mFireCountDown = mFireRate;
+            }
         }
     }
 
@@ -108,5 +135,31 @@ public class Turret : MonoBehaviour
     }
 
 
+    private void LockOnTarget()
+    {
+        //Target Lock on
+        Vector3 dirction = mTarget.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dirction);
+        Vector3 rotation = Quaternion.Lerp(mRotaPart.rotation ,lookRotation,Time.deltaTime * mRotaSpeed).eulerAngles;
+        mRotaPart.rotation = Quaternion.Euler(0.0f,rotation.y,0.0f);
+    }
 
+    private void Laser()
+    {
+        if(!mLineRenderer.enabled)
+        {
+            mLineRenderer.enabled = true;
+            mImpactEffect.Play();
+            mImpackLight.enabled = true;
+        }
+        mTargetEnemy.GetDamage(mLaserDamage * Time.deltaTime);
+        mTargetEnemy.GetComponent<EnemyMovement>().Slow(mSlowPercent);
+        
+        mLineRenderer.SetPosition(0,mFirePosition.position);
+        mLineRenderer.SetPosition(1,mTarget.position);
+        Vector3 dir = mFirePosition.position - mTarget.position;
+
+        mImpactEffect.transform.position = mTarget.position+ dir.normalized * 0.5f;
+        mImpactEffect.transform.rotation = Quaternion.LookRotation(dir);
+    }
 }

@@ -9,6 +9,8 @@ public class TurretBluePrint
     public string mTurretName;
     public GameObject mPrefab;
     public int mCost;
+    public GameObject mUpgradePrefab;
+    public int mUpgradeCost;
 
     public void SetUI()
     {

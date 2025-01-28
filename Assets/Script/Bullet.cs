@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int mDamage = 2;
+    public float mDamage = 2.0f;
     public float mSpeed = 70.0f;
     public GameObject mImpactEffect;
     public float mExplotionRadius = 0.0f;
@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            Damage(mBulletTarget.GetComponent<Enemy>());
+            mBulletTarget.GetComponent<Enemy>().GetDamage(mDamage);
         }
 
         Destroy(gameObject);
@@ -63,14 +63,9 @@ public class Bullet : MonoBehaviour
             if (collider.tag == mEnemyTag)
             {
                 //Debug.Log("hit enemy");
-                Damage(collider.GetComponent<Enemy>());
+                collider.GetComponent<Enemy>().GetDamage(mDamage);
             }
         }
-    }
-
-    private void Damage(Enemy enemey)
-    {
-        enemey.mHealth -= mDamage;
     }
 
     private void OnDrawGizmosSelected()
