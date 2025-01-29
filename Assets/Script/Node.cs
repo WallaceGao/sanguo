@@ -82,6 +82,19 @@ public class Node : MonoBehaviour
         mTurretBluePrint = turretBluePrint;
     }
 
+    public void SellTurret()
+    {
+        if (!mIsUpgrade)
+            PlayerStats.mMoney += mTurretBluePrint.mCost / 2;
+        else
+            PlayerStats.mMoney += (mTurretBluePrint.mCost + mTurretBluePrint.mUpgradeCost) / 2;
+        //effect
+
+        Destroy(mCurrentTurret);
+        mTurretBluePrint = null;
+        mIsUpgrade = false;
+    }
+
     public void UpgradeTurret()
     {
         if (PlayerStats.mMoney < mTurretBluePrint.mUpgradeCost)

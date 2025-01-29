@@ -40,4 +40,10 @@ public class NodeUi : MonoBehaviour
         mTarget.UpgradeTurret();
         BuildManager.mInstence.DeselectNode();
     }
+
+    public void Sell()
+    {
+        mTarget.SellTurret();
+        BuildManager.mInstence.DeselectNode();
+    }
 }
