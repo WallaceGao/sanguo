@@ -1,24 +1,26 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     public float mHealth = 5.0f;
+    public float mCurrentHealth = 0.0f;
     public float mSpeed = 10.0f;
     public float mCloseDistance = 0.2f;
     public float mCloseEndPosition = 2.0f;
     public int mAddMoney = 20;
     public GameObject mDeathEffect;
-
-
+    [Header("Unity Staff")]
+    public Image mHealthBar;
 
     private void Start()
     {
-        
+        mCurrentHealth = mHealth;
     }
 
     private void Update()
     {
-        if (mHealth <= 0)
+        if (mCurrentHealth <= 0)
         {
             PlayerStats.mKillNumber++;
             GameObject deathEffect = (GameObject)Instantiate(mDeathEffect, transform.position, Quaternion.identity);
@@ -36,6 +38,9 @@ public class Enemy : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        mHealth -= damage;
+        mCurrentHealth -= damage;
+
+        float healthImage = mCurrentHealth / mHealth; 
+        mHealthBar.fillAmount = healthImage;
     }
 }

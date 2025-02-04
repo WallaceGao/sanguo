@@ -29,13 +29,9 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            mGameOverUi.SetActive(true);
-        }
-
         if(PlayerStats.mHealth <= 0)
         {
+            mGameOverUi.SetActive(true);
             Debug.Log("GameOver");
             GameEnd();
         }

@@ -15,6 +15,7 @@ public class BuildManager : MonoBehaviour
     public GameObject mStandProjectPrefab;
     public GameObject mMissileTurretPrefab;
     public GameObject mBuildEffect;
+    public GameObject mUpgradeEffect;
     public NodeUi mNodeUi;
 
     private TurretBluePrint mTurretToBuild;

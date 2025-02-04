@@ -106,7 +106,7 @@ public class Node : MonoBehaviour
         PlayerStats.mMoney -= mTurretBluePrint.mUpgradeCost;
         Destroy(mCurrentTurret);
 
-        GameObject effect = (GameObject)Instantiate(mBuildManager.mBuildEffect, GetTurretPosition(), Quaternion.identity);
+        GameObject effect = (GameObject)Instantiate(mBuildManager.mUpgradeEffect, GetTurretPosition(), Quaternion.identity);
         Destroy(effect, 5.0f);
 
         GameObject turret = (GameObject)Instantiate(mTurretBluePrint.mUpgradePrefab , GetTurretPosition(), Quaternion.identity);
