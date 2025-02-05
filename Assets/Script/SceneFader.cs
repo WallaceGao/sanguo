@@ -12,7 +12,7 @@ public class SceneFader : MonoBehaviour
     {
         StartCoroutine(FadeIn());
     }
-
+    
     public void FadeTo(string scene)
     {
         StartCoroutine(FadeOut(scene));

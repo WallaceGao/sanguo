@@ -26,12 +26,14 @@ public class Enemy : MonoBehaviour
             GameObject deathEffect = (GameObject)Instantiate(mDeathEffect, transform.position, Quaternion.identity);
             Destroy(deathEffect, 2.0f);
             PlayerStats.mMoney += mAddMoney;
+            WaveSpawner.mEnemyAlive--;
             Destroy(gameObject);
         }
         if (Vector3.Distance(transform.position, WaveSpawner.mEndPosition.position) <= mCloseEndPosition)
         {
             Debug.Log("player lose health");
             PlayerStats.mHealth--;
+            WaveSpawner.mEnemyAlive--;
             Destroy(gameObject);
         }
     }
