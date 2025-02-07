@@ -127,9 +127,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5197411755311214839}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.44927, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00033527613}
+  m_LocalScale: {x: 1, y: 0.44927007, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 833856781319037218}
@@ -137,7 +137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 78.4}
+  m_AnchoredPosition: {x: 0, y: 78.40041}
   m_SizeDelta: {x: 0, y: 307.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8011521380315428133
@@ -356,13 +356,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mHealth: 10
-  mCurrentHealth: 0
+  mShield: 0
+  mShieldResetTime: 2
+  mShieldRechargeValue: 0.3
+  mShieldRechargeRate: 0.5
   mSpeed: 10
   mCloseDistance: 0.2
   mCloseEndPosition: 2
   mAddMoney: 30
   mDeathEffect: {fileID: 2226904631113134640, guid: acc25a0771c36ac4f8e8a1e618ebf0ca, type: 3}
   mHealthBar: {fileID: 1257179467561176685}
+  mShieldBar: {fileID: 0}
 --- !u!65 &800190456244822280
 BoxCollider:
   m_ObjectHideFlags: 0

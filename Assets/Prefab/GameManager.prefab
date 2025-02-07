@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3535895481124692604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5676386982741139956}
+  - component: {fileID: 8101270235998353768}
+  - component: {fileID: 901755446967999976}
+  - component: {fileID: 4127866045540594996}
+  - component: {fileID: 6749722278520664230}
+  - component: {fileID: 7491924150126485196}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5676386982741139956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535895481124692604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8101270235998353768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535895481124692604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b409e0d4527eca45b21f94ee9f853a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mSetStartPosition: {fileID: 0}
+  mSetEndPosition: {fileID: 0}
+  mTimeBetweenWave: 5
+  mTimeBetweenEnemySpwan: 0.5
+  mWaveCountDown: {fileID: 0}
+  mEnemyCount: {fileID: 0}
+  mWaves:
+  - mEnemy: {fileID: 6141068435536709162, guid: 225057bc6cd7ca84c87bee3fdebd9d68, type: 3}
+    mCount: 5
+    mRate: 0.5
+  - mEnemy: {fileID: 6141068435536709162, guid: 4169ce4afa242d94a9c021d6f2b74a95, type: 3}
+    mCount: 10
+    mRate: 0.5
+--- !u!114 &901755446967999976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535895481124692604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c690445a45a9f148aa3db21e8e64963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mStandProjectPrefab: {fileID: 7050081893001014092, guid: f31de0eb9d88571489322ec63a04fe19, type: 3}
+  mMissileTurretPrefab: {fileID: 1173787989165758381, guid: b92473bb6ba2995409e4a667d6e5cea3, type: 3}
+  mBuildEffect: {fileID: 4786874973680997651, guid: 464ad72c48a953240badbe55e4c78f2d, type: 3}
+  mUpgradeEffect: {fileID: 4786874973680997651, guid: 464ad72c48a953240badbe55e4c78f2d, type: 3}
+  mNodeUi: {fileID: 0}
+--- !u!114 &4127866045540594996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535895481124692604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c66fa47b08a6594cafac5285c0ee924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mStartMoney: 200
+  mStartHealth: 5
+  mMoneyText: {fileID: 0}
+--- !u!114 &6749722278520664230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535895481124692604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5863701c390050947a123d514bc12a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mGameOverUi: {fileID: 0}
+  mGameFinishUi: {fileID: 0}
+  mSceneFader: {fileID: 0}
+--- !u!114 &7491924150126485196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535895481124692604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287cbdfa295ade1468d1126dbe99ac30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 0}
+  mMenu: Main
+  mSceneFader: {fileID: 0}

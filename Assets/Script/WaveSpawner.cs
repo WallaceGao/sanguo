@@ -36,6 +36,7 @@ public class WaveSpawner : MonoBehaviour
     {
         mEnemyCount.text = string.Format(mEnemyAlive.ToString());
         mWaveCountDown.text = string.Format((mWaveNumeber + 1).ToString());
+        //Debug.Log(mEnemyAlive);
 
         if (mEnemyAlive > 0)
         {
@@ -47,11 +48,14 @@ public class WaveSpawner : MonoBehaviour
             mCountDown = mTimeBetweenWave;
         }
 
+        if (mWaveNumeber == mWaves.Length)
+        {
+            GameManager.mInstence.WinLevel();
+            this.enabled = false;
+        }
+
         mCountDown -= Time.deltaTime;
         mCountDown = Mathf.Clamp(mCountDown, 0.0f, Mathf.Infinity);
-        Debug.Log(mEnemyAlive);
-
-
     }
 
     IEnumerator SpawnWave()
@@ -66,12 +70,6 @@ public class WaveSpawner : MonoBehaviour
 
         Debug.Log("Wave Incomming");
         mWaveNumeber++;
-
-        if (mWaveNumeber == mWaves.Length && mEnemyAlive == 0)
-        {
-            GameManager.mInstence.WinLevel();
-            this.enabled = false;
-        }
     }
 
 
