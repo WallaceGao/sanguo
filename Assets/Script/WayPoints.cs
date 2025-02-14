@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class WayPoints : MonoBehaviour
 {
-    public static Transform[] mPoints;
+    public Transform[] mPoints;
+    public int mCount = 0; 
 
     private void Awake()
     {
@@ -10,6 +11,7 @@ public class WayPoints : MonoBehaviour
         for(int i = 0; i < mPoints.Length; i++ )
         {
             mPoints[i] = transform.GetChild(i);
+            mCount++;
         }
     }
 }

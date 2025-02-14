@@ -1063,6 +1063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f30b1342bd7cc44d810f6d198ca4bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mPoints: []
+  mCount: 0
 --- !u!65 &1255292203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1878,6 +1880,22 @@ PrefabInstance:
       objectReference: {fileID: 2195978759765218883}
     - target: {fileID: 8101270235998353768, guid: 48dd51cad2d6ea247ad44321fd3eb1a6, type: 3}
       propertyPath: mSetStartPosition
+      value: 
+      objectReference: {fileID: 2195978760206138834}
+    - target: {fileID: 8101270235998353768, guid: 48dd51cad2d6ea247ad44321fd3eb1a6, type: 3}
+      propertyPath: mWaves.Array.data[0].mEnemyPath
+      value: 
+      objectReference: {fileID: 1221609378}
+    - target: {fileID: 8101270235998353768, guid: 48dd51cad2d6ea247ad44321fd3eb1a6, type: 3}
+      propertyPath: mWaves.Array.data[1].mEnemyPath
+      value: 
+      objectReference: {fileID: 1221609378}
+    - target: {fileID: 8101270235998353768, guid: 48dd51cad2d6ea247ad44321fd3eb1a6, type: 3}
+      propertyPath: mWaves.Array.data[0].mSpawnPosition
+      value: 
+      objectReference: {fileID: 2195978760206138834}
+    - target: {fileID: 8101270235998353768, guid: 48dd51cad2d6ea247ad44321fd3eb1a6, type: 3}
+      propertyPath: mWaves.Array.data[1].mSpawnPosition
       value: 
       objectReference: {fileID: 2195978760206138834}
     m_RemovedComponents: []

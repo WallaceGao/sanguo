@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     [Header("Unity Staff")]
     public Image mHealthBar;
     public Image mShieldBar;
-
+    
     private float mCurrentHealth = 0.0f;
     private float mCurrentShield = 0.0f;
     private float mShieldChargeCountDown = 0.0f;
