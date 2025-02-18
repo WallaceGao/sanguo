@@ -39,14 +39,17 @@ public class Enemy : MonoBehaviour
             WaveSpawner.mEnemyAlive--;
             Destroy(gameObject);
         }
-        if (Vector3.Distance(transform.position, WaveSpawner.mEndPosition.position) <= mCloseEndPosition)
+        for (int i = 0; i < WaveSpawner.mEndPosition.Length; i++)
         {
-            Debug.Log("player lose health");
-            PlayerStats.mHealth--;
-            WaveSpawner.mEnemyAlive--;
-            Destroy(gameObject);
+            if (Vector3.Distance(transform.position, WaveSpawner.mEndPosition[i].position) <= mCloseEndPosition)
+            {
+                Debug.Log("Player lost health");
+                PlayerStats.mHealth--;
+                GameHealth.Instance.GetHealthDown();
+                WaveSpawner.mEnemyAlive--;
+                Destroy(gameObject);
+            }
         }
-
         if (mShieldChargeCountDown <= 0.0f)
         {
             StartCoroutine(ShiledCharge());

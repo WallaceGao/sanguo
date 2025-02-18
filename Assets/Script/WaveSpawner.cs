@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform mSetEndPosition;
-    public static Transform mEndPosition;
+    public Transform[] mSetEndPosition;
+    public static Transform[] mEndPosition;
     public float mTimeBetweenWave = 2.0f;
     public float mTimeBetweenEnemySpwan = 0.5f;
     public static int mTatalWave = 0;
@@ -19,7 +19,11 @@ public class WaveSpawner : MonoBehaviour
 
     private void Awake()
     {
-        mEndPosition = mSetEndPosition;
+        mEndPosition = new Transform[mSetEndPosition.Length];
+        for (int i = 0; i < mSetEndPosition.Length; i++)
+        {
+            mEndPosition[i] = mSetEndPosition[i];
+        }
     }
 
     public void Start()
