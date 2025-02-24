@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e199fde4b1a75b40aaabd672933b6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mHealth: 20
+  mHealth: 15
   mShield: 10
-  mShieldResetTime: 5
+  mShieldResetTime: 10
   mShieldRechargeValue: 0.3
   mShieldRechargeRate: 0.5
   mSpeed: 3

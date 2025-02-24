@@ -356,13 +356,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mHealth: 5
-  mCurrentHealth: 0
-  mSpeed: 20
+  mShield: 0
+  mShieldResetTime: 2
+  mShieldRechargeValue: 0.3
+  mShieldRechargeRate: 0.5
+  mSpeed: 15
   mCloseDistance: 0.2
   mCloseEndPosition: 2
   mAddMoney: 30
   mDeathEffect: {fileID: 2226904631113134640, guid: 843f0c61090b22d4a901d572526e3410, type: 3}
   mHealthBar: {fileID: 7301377610247428118}
+  mShieldBar: {fileID: 0}
 --- !u!65 &7096474883171746483
 BoxCollider:
   m_ObjectHideFlags: 0

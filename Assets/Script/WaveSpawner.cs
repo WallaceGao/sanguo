@@ -71,6 +71,7 @@ public class WaveSpawner : MonoBehaviour
         // 遍历每个敌人组，并行生成不同类型的敌人
         foreach (var group in wave.mEnemyGroups)
         {
+            mEnemyAlive += group.mCount;
             activeCoroutines.Add(StartCoroutine(SpawnEnemyGroup(group)));
         }
 
@@ -109,7 +110,6 @@ public class WaveSpawner : MonoBehaviour
         }
 
         GameObject newEnemy = Instantiate(enemy, startPositon.position, startPositon.rotation);
-        mEnemyAlive++; // **修正点：每次生成敌人时增加计数**
 
         EnemyMovement enemyMovement = newEnemy.GetComponent<EnemyMovement>();
         if (enemyMovement != null)

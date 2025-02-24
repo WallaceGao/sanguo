@@ -1639,6 +1639,8 @@ MonoBehaviour:
   button1x: {fileID: 2076572361460504196}
   button2x: {fileID: 5130846787627917955}
   button3x: {fileID: 7446068098331797776}
+  mNoClick: {r: 0.6603774, g: 0.34702185, b: 0, a: 1}
+  mClick: {r: 1, g: 0.52592593, b: 0, a: 1}
 --- !u!1 &3501970136899733376
 GameObject:
   m_ObjectHideFlags: 0
