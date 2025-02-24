@@ -365,7 +365,7 @@ MonoBehaviour:
   mCloseDistance: 0.2
   mCloseEndPosition: 2
   mAddMoney: 30
-  mDeathEffect: {fileID: 2226904631113134640, guid: acc25a0771c36ac4f8e8a1e618ebf0ca, type: 3}
+  mDeathEffect: {fileID: 2226904631113134640, guid: 665575a8feba7d44a90daeb3daf2fc03, type: 3}
   mHealthBar: {fileID: 1257179467561176685}
   mShieldBar: {fileID: 4916354374515714409}
 --- !u!65 &800190456244822280

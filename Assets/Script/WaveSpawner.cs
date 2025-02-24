@@ -1,6 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class WaveSpawner : MonoBehaviour
             mCountDown = mTimeBetweenWave;
         }
 
-        if (mWaveNumber == mWaves.Length)
+        if (mWaveNumber == mWaves.Length && mEnemyAlive <= 0)
         {
             GameManager.mInstence.WinLevel();
             this.enabled = false;
@@ -62,19 +63,44 @@ public class WaveSpawner : MonoBehaviour
     IEnumerator SpawnWave()
     {
         Wave wave = mWaves[mWaveNumber];
-        mEnemyAlive = wave.mCount;
-        for (int i = 0; i < wave.mCount; i++)
+
+        Debug.Log($"Wave {mWaveNumber + 1} Incoming!");
+
+        List<Coroutine> activeCoroutines = new List<Coroutine>();
+
+        // 遍历每个敌人组，并行生成不同类型的敌人
+        foreach (var group in wave.mEnemyGroups)
         {
-            SpawnEnemy(wave.mEnemy,wave.mSpawnPosition,wave.mEnemyPath);
-            yield return new WaitForSeconds(1f/wave.mRate);
+            activeCoroutines.Add(StartCoroutine(SpawnEnemyGroup(group)));
         }
 
-        Debug.Log("Wave Incomming");
-        mWaveNumber++;
+        // **等待所有敌人组刷怪完毕**
+        foreach (var coroutine in activeCoroutines)
+        {
+            yield return coroutine;
+        }
+
+        Debug.Log($"Wave {mWaveNumber + 1} Completed!");
+        mWaveNumber++; // **在所有敌人刷完后再增加 Wave 计数**
     }
 
+    IEnumerator SpawnEnemyGroup(Wave.EnemyGroup group)
+    {
+        // 先等待 `mTimeDelay` 秒
+        if (group.mTimeDelay > 0)
+        {
+            yield return new WaitForSeconds(group.mTimeDelay);
+        }
 
-    private void SpawnEnemy(GameObject enemy, Transform startPositon,WayPoints enemyPath)
+        // 让这个组稍后再开始刷怪
+        for (int i = 0; i < group.mCount; i++)
+        {
+            SpawnEnemy(group.mEnemyPrefab, group.mSpawnPosition, group.mEnemyPath);
+            yield return new WaitForSeconds(group.mRate); // 按照 mRate 控制刷怪速度
+        }
+    }
+
+    private void SpawnEnemy(GameObject enemy, Transform startPositon, WayPoints enemyPath)
     {
         if (enemy == null)
         {
@@ -82,7 +108,9 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-        GameObject newEnemy = Instantiate(enemy, startPositon.position , startPositon.rotation);
+        GameObject newEnemy = Instantiate(enemy, startPositon.position, startPositon.rotation);
+        mEnemyAlive++; // **修正点：每次生成敌人时增加计数**
+
         EnemyMovement enemyMovement = newEnemy.GetComponent<EnemyMovement>();
         if (enemyMovement != null)
         {

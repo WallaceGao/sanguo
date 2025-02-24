@@ -32,24 +32,17 @@ public class Enemy : MonoBehaviour
     {
         if (mCurrentHealth <= 0)
         {
-            PlayerStats.mKillNumber++;
-            GameObject deathEffect = (GameObject)Instantiate(mDeathEffect, transform.position, Quaternion.identity);
-            Destroy(deathEffect, 2.0f);
-            PlayerStats.mMoney += mAddMoney;
-            WaveSpawner.mEnemyAlive--;
-            Destroy(gameObject);
+            OnDeath();
         }
+
         for (int i = 0; i < WaveSpawner.mEndPosition.Length; i++)
         {
             if (Vector3.Distance(transform.position, WaveSpawner.mEndPosition[i].position) <= mCloseEndPosition)
             {
-                Debug.Log("Player lost health");
-                PlayerStats.mHealth--;
-                GameHealth.Instance.GetHealthDown();
-                WaveSpawner.mEnemyAlive--;
-                Destroy(gameObject);
+                OnReachEnd();
             }
         }
+
         if (mShieldChargeCountDown <= 0.0f)
         {
             StartCoroutine(ShiledCharge());
@@ -91,4 +84,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnDeath()
+    {
+        PlayerStats.mKillNumber++;
+        if (mDeathEffect != null)
+        {
+            GameObject deathEffect = Instantiate(mDeathEffect, transform.position, Quaternion.identity);
+            Destroy(deathEffect, 2.0f);
+        }
+        PlayerStats.mMoney += mAddMoney;
+        WaveSpawner.mEnemyAlive--;
+        Destroy(gameObject);
+    }
+
+    private void OnReachEnd()
+    {
+        Debug.Log("Player lost health");
+        PlayerStats.mHealth--;
+        GameHealth.Instance.GetHealthDown();
+        WaveSpawner.mEnemyAlive--;
+        Destroy(gameObject);
+    }
 }
