@@ -101,9 +101,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mHoverColor: {r: 0.46226418, g: 0.3597811, b: 0.3597811, a: 0}
-  mStartColor: {r: 1, g: 1, b: 1, a: 0}
+  mStartColor: {r: 0, g: 1, b: 1, a: 1}
   mCantBuildColor: {r: 1, g: 0, b: 0, a: 0}
   mTurretOffSet: {x: 0, y: 0, z: 0}
+  mTurretBluePrint:
+    mCostText: {fileID: 0}
+    mNameText: {fileID: 0}
+    mTurretName: 
+    mPrefab: {fileID: 0}
+    mCost: 0
+    mUpgradePrefab: {fileID: 0}
+    mUpgradeCost: 0
+  mIsUpgrade: 0
 --- !u!65 &-4322230538156368786
 BoxCollider:
   m_ObjectHideFlags: 0

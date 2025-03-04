@@ -75,29 +75,28 @@ public class WaveSpawner : MonoBehaviour
             activeCoroutines.Add(StartCoroutine(SpawnEnemyGroup(group)));
         }
 
-        // **等待所有敌人组刷怪完毕**
+        // 等待所有敌人组刷怪完毕
         foreach (var coroutine in activeCoroutines)
         {
             yield return coroutine;
         }
 
         Debug.Log($"Wave {mWaveNumber + 1} Completed!");
-        mWaveNumber++; // **在所有敌人刷完后再增加 Wave 计数**
+        mWaveNumber++; // 在所有敌人刷完后再增加 Wave 计数
     }
 
     IEnumerator SpawnEnemyGroup(Wave.EnemyGroup group)
     {
-        // 先等待 `mTimeDelay` 秒
+        // wait for delay time
         if (group.mTimeDelay > 0)
         {
             yield return new WaitForSeconds(group.mTimeDelay);
         }
 
-        // 让这个组稍后再开始刷怪
         for (int i = 0; i < group.mCount; i++)
         {
             SpawnEnemy(group.mEnemyPrefab, group.mSpawnPosition, group.mEnemyPath);
-            yield return new WaitForSeconds(group.mRate); // 按照 mRate 控制刷怪速度
+            yield return new WaitForSeconds(group.mRate); 
         }
     }
 
