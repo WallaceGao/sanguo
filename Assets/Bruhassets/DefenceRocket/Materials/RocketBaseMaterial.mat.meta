@@ -1,15 +1,8 @@
 fileFormatVersion: 2
-guid: e71d148923e2e5348bcd6ac0c7beef94
+guid: 62a8dc354b0c88b44b1d60cfcaf6868f
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 0
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 189858
-  packageName: 3D Defence Rocket Turret
-  packageVersion: 1.0
-  assetPath: Assets/Bruhassets/DefenceRocket/Materials/RocketBaseMaterial.mat
-  uploadId: 419047
