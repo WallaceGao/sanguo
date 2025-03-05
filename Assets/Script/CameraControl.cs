@@ -14,9 +14,14 @@ public class CameraControl : MonoBehaviour
     public float mMinZ = -10f;
     public float mMaxZ = 26f;
 
-    public float mRotationSpeed = 5.0f;
+    public float mRotationSpeed = 10.0f;
+    public float mMinRotateX = 0;
+    public float mMaxRotateX = 70f;
+    public float mMinRotateY = -75;
+    public float mMaxRotateY = 75;
     private Vector3 mLastMousePosition;
     private bool mIsRotating = false;
+
 
 
     private void Update()
@@ -78,10 +83,22 @@ public class CameraControl : MonoBehaviour
             float rotateY = -deltaMouse.x * mRotationSpeed * Time.deltaTime;
 
 
-            transform.Rotate(Vector3.right, rotateX);
-            transform.Rotate(Vector3.up, rotateY, Space.World);
+            // **获取当前的欧拉角**
+            Vector3 currentRotation = transform.eulerAngles;
 
-            mLastMousePosition = Input.mousePosition; 
+            // **转换X角度范围（防止 270° 变成 -90°）**
+            if (currentRotation.x > 180)
+                currentRotation.x -= 360;
+            currentRotation.x = Mathf.Clamp(currentRotation.x + rotateX, mMinRotateX, mMaxRotateX);
+
+            if (currentRotation.y > 180)
+                currentRotation.y -= 360;
+            currentRotation.y = Mathf.Clamp(currentRotation.y + rotateY, mMinRotateY, mMaxRotateY);
+
+            // **应用新的旋转**
+            transform.eulerAngles = currentRotation;
+
+            mLastMousePosition = Input.mousePosition;
         }
     }
 }
