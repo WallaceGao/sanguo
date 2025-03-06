@@ -36,6 +36,11 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.mGameIsOver)
+        {
+            return;
+        }
+
         mEnemyCount.text = mEnemyAlive.ToString();
         mWaveCountDown.text = (mWaveNumber + 1).ToString();
         //Debug.Log(mEnemyAlive);
