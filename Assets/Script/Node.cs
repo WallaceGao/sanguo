@@ -19,7 +19,7 @@ public class Node : MonoBehaviour
         mIsUpgrade = false;
         mRenderer = GetComponent<Renderer>();
         mRenderer.material.color = mStartColor;
-        mBuildManager = BuildManager.mInstence;
+        mBuildManager = BuildManager.mInstance;
     }
 
     private void OnMouseEnter()

@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
 
     private void Start()
     {
-        mBuildManager = BuildManager.mInstence;
+        mBuildManager = BuildManager.mInstance;
         mStandTurret.SetUI();
         mMissileTurret.SetUI();
         mLaserTurret.SetUI();

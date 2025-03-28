@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
     public float mDamage = 2.0f;
     public float mSpeed = 70.0f;
     public GameObject mImpactEffect;
-    public float mExplotionRadius = 0.0f;
+    public float mExplosionRadius = 0.0f;
     public string mEnemyTag = "Enemy";
 
     private Transform mBulletTarget;
@@ -24,14 +24,14 @@ public class Bullet : MonoBehaviour
         }
 
         Vector3 direction = mBulletTarget.position - transform.position;
-        float distenceThisFrame = mSpeed * Time.deltaTime;
+        float distanceThisFrame = mSpeed * Time.deltaTime;
 
-        if (direction.magnitude <= distenceThisFrame)
+        if (direction.magnitude <= distanceThisFrame)
         {
             HitTarget();
         }
 
-        transform.Translate(direction.normalized * distenceThisFrame, Space.World);
+        transform.Translate(direction.normalized * distanceThisFrame, Space.World);
         transform.LookAt(mBulletTarget);
 
     }
@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
         GameObject EffectIns = (GameObject)Instantiate(mImpactEffect, transform.position, transform.rotation);
         Destroy(EffectIns, 5.0f);
 
-        if (mExplotionRadius > 0.0f)
+        if (mExplosionRadius > 0.0f)
         {
             Explode();
         }
@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
 
     private void Explode()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position,mExplotionRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position,mExplosionRadius);
         foreach(Collider collider in colliders)
         {
             //Debug.Log(collider.tag);
@@ -70,10 +70,10 @@ public class Bullet : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if(mExplotionRadius > 0.0f)
+        if(mExplosionRadius > 0.0f)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, mExplotionRadius);
+            Gizmos.DrawWireSphere(transform.position, mExplosionRadius);
         }
     }
 }

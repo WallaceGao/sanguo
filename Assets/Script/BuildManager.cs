@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-    public static BuildManager mInstence;
+    public static BuildManager mInstance;
     private void Awake()
     {
-        if(mInstence != null)
+        if(mInstance != null)
         {
             Debug.Log("You build more than one Build Manager");
         }
-        mInstence = this;
+        mInstance = this;
     }
 
     public GameObject mStandProjectPrefab;

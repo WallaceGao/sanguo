@@ -56,5 +56,9 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "sanguo.sln"
+    "dotnet.defaultSolution": "sanguo.sln",
+    "cSpell.words": [
+        "Explotion",
+        "Monobehavior"
+    ]
 }

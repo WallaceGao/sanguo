@@ -38,12 +38,12 @@ public class NodeUi : MonoBehaviour
     public void Upgrade()
     {
         mTarget.UpgradeTurret();
-        BuildManager.mInstence.DeselectNode();
+        BuildManager.mInstance.DeselectNode();
     }
 
     public void Sell()
     {
         mTarget.SellTurret();
-        BuildManager.mInstence.DeselectNode();
+        BuildManager.mInstance.DeselectNode();
     }
 }

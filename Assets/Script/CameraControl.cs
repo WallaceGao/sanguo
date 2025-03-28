@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    public bool mDoMoverment = true;
+    public bool mDoMovement = true;
     public float mPanSpeed = 25.0f;
     public float mPanBorderThickness = 5.0f;
     public float mScrollSpeed = 5.0f ;
@@ -29,7 +29,7 @@ public class CameraControl : MonoBehaviour
         if(!GameManager.mGameIsOver)
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                mDoMoverment = !mDoMoverment;
+                mDoMovement = !mDoMovement;
 
             if (Input.GetKey(KeyCode.W))
                 transform.Translate(Vector3.forward * mPanSpeed * Time.deltaTime, Space.World);
@@ -39,24 +39,24 @@ public class CameraControl : MonoBehaviour
                 transform.Translate(Vector3.left * mPanSpeed * Time.deltaTime, Space.World);
             else if (Input.GetKey(KeyCode.D))
                 transform.Translate(Vector3.right * mPanSpeed * Time.deltaTime, Space.World);
-            else if (mDoMoverment && Input.mousePosition.y >= Screen.height - mPanBorderThickness)
+            else if (mDoMovement && Input.mousePosition.y >= Screen.height - mPanBorderThickness)
                 transform.Translate(Vector3.forward * mPanSpeed * Time.deltaTime, Space.World);
-            else if (mDoMoverment && Input.mousePosition.y <= mPanBorderThickness)
+            else if (mDoMovement && Input.mousePosition.y <= mPanBorderThickness)
                 transform.Translate(Vector3.back * mPanSpeed * Time.deltaTime, Space.World);
-            else if (mDoMoverment && Input.mousePosition.x <= mPanBorderThickness)
+            else if (mDoMovement && Input.mousePosition.x <= mPanBorderThickness)
                 transform.Translate(Vector3.left * mPanSpeed * Time.deltaTime, Space.World);
-            else if (mDoMoverment && Input.mousePosition.x >= Screen.width - mPanBorderThickness)
+            else if (mDoMovement && Input.mousePosition.x >= Screen.width - mPanBorderThickness)
                 transform.Translate(Vector3.right * mPanSpeed * Time.deltaTime, Space.World);
 
             float scroll = Input.GetAxis("Mouse ScrollWheel");
-            Vector3 postion = transform.position;
-            postion.y -= scroll * 1000 * mScrollSpeed * Time.deltaTime;
+            Vector3 position = transform.position;
+            position.y -= scroll * 1000 * mScrollSpeed * Time.deltaTime;
 
-            postion.x = Mathf.Clamp(postion.x, mMinX, mMaxX);
-            postion.y = Mathf.Clamp(postion.y, mMinY, mMaxY);  // min and max
-            postion.z = Mathf.Clamp(postion.z, mMinZ, mMaxZ);
+            position.x = Mathf.Clamp(position.x, mMinX, mMaxX);
+            position.y = Mathf.Clamp(position.y, mMinY, mMaxY);  // min and max
+            position.z = Mathf.Clamp(position.z, mMinZ, mMaxZ);
 
-            transform.position = postion;
+            transform.position = position;
 
             CameraRotation();
         }
@@ -64,7 +64,7 @@ public class CameraControl : MonoBehaviour
 
     private void CameraRotation()
     {
-        if (Input.GetMouseButtonDown(2))  // 2 is middle buttom;
+        if (Input.GetMouseButtonDown(2))  // 2 is middle bottom;
         {
             Debug.Log("Camera Start Rotation");
             mIsRotating = true;
@@ -83,10 +83,10 @@ public class CameraControl : MonoBehaviour
             float rotateY = -deltaMouse.x * mRotationSpeed * Time.deltaTime;
 
 
-            // **获取当前的欧拉角**
+            // eulerAngles is Yaw-Pitch-Roll, it will make sure the eulerAngles is 
             Vector3 currentRotation = transform.eulerAngles;
 
-            // **转换X角度范围（防止 270° 变成 -90°）**
+            // make sure if it's 270, it will be 270- 360 = -90
             if (currentRotation.x > 180)
                 currentRotation.x -= 360;
             currentRotation.x = Mathf.Clamp(currentRotation.x + rotateX, mMinRotateX, mMaxRotateX);
@@ -95,7 +95,7 @@ public class CameraControl : MonoBehaviour
                 currentRotation.y -= 360;
             currentRotation.y = Mathf.Clamp(currentRotation.y + rotateY, mMinRotateY, mMaxRotateY);
 
-            // **应用新的旋转**
+            // Set new new eulerAngle 
             transform.eulerAngles = currentRotation;
 
             mLastMousePosition = Input.mousePosition;
